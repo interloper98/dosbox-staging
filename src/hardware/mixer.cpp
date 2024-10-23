@@ -1381,7 +1381,7 @@ bool MixerChannel::TryParseAndSetCustomFilter(const std::string& filter_prefs)
 		                                              : "high-pass";
 
 		int order;
-		if (!sscanf(order_pref.c_str(), "%d", &order) || order < 1 ||
+		if (sscanf(order_pref.c_str(), "%d", &order) != 1 || order < 1 ||
 		    order > MaxFilterOrder) {
 			LOG_WARNING(
 			        "%s: Invalid custom %s filter order: '%s'. "
@@ -1394,7 +1394,7 @@ bool MixerChannel::TryParseAndSetCustomFilter(const std::string& filter_prefs)
 		}
 
 		int cutoff_freq_hz;
-		if (!sscanf(cutoff_freq_pref.c_str(), "%d", &cutoff_freq_hz) ||
+		if (sscanf(cutoff_freq_pref.c_str(), "%d", &cutoff_freq_hz) != 1 ||
 		    cutoff_freq_hz <= 0) {
 			LOG_WARNING(
 			        "%s: Invalid custom %s filter cutoff frequency: '%s'. "
